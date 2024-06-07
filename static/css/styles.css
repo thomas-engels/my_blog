@@ -10878,6 +10878,10 @@ a:clicked {
     text-decoration: none;
 }
 
-.wrapper {
-    min-height: 100vh;
+.overlay-alert {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1050; /* Ensure it's above other content */
 }
