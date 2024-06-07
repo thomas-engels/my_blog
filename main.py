@@ -168,7 +168,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    flash('You have been successfully logged out!', 'success')
+    flash('Successful log out!')
     return redirect(url_for('get_all_posts'))
 
 
@@ -248,7 +248,14 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
-
+@app.route("/delete_comment/<int:comment_id>")
+@admin_only
+def delete_comment(comment_id):
+    comment_to_delete = db.get_or_404(Comment, comment_id)
+    post_id = comment_to_delete.post_id
+    db.session.delete(comment_to_delete)
+    db.session.commit()
+    return redirect(url_for('show_post', post_id=post_id))
 
 @app.route("/about")
 def about():
@@ -283,4 +290,5 @@ def test():
 
 
 if __name__ == "__main__":
+    # app.run(debug=True, port=5001)
     app.run(debug=False)
