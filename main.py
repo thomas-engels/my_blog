@@ -281,5 +281,6 @@ def send_email(name, email, phone, message):
 def test():
     return render_template('test.html')
 
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=False)
